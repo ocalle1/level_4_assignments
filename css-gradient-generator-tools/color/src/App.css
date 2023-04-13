@@ -1,0 +1,33 @@
+/* controls the bigger boxers */
+.box--control {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+ margin: 5%;
+}
+/* control the inner boxes on the left */
+.big--leftBox{
+  height: 500px;
+  width: 500px;
+  border: 1px solid black;
+}
+.left--innerTopBox{
+  height: 250px;
+  width: 400px;
+  border: 1px solid black;
+  margin-top: 10%;
+  margin-left: 3rem;
+}
+.left--innerBottomBox{
+  height: 130px;
+  width: 400px;
+  border: 1px solid black;
+  margin-top: .2%;
+  margin-left: 3rem;
+}
+/* controls right big box */
+.big--rightBox {
+  height: 500px;
+  width: 500px;
+  border: 1px solid black;
+} 
