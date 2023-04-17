@@ -1,1 +1,48 @@
+div, button { 
+  padding: 5px 10px; 
+  margin: 5px 0px; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.footer{
+  position:fixed;
+  /* right: 0; */
+  bottom: 0;
+  right: 50%; 
+  background-color: #cfcfcf;
 
+}
+.text{
+  position: fixed;
+  bottom: 60%;
+  right: 30%;
+  /* background-color: #cfcfcf; */
+
+}
+.button{
+  position: fixed;
+  border: none;
+  bottom: 30%;
+  right: 40%;
+  background-color: pink;
+  color: #000;
+
+}
+.navbar{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 30%;
+  left: 15%;
+}
+.light-theme {
+  background-color: #cfcfcf;
+  color: #000;
+}
+
+.dark-theme {
+  background-color: #3a3b3c;
+  color: #fff; 
+}
+button { 
+  border: none; 
+}
