@@ -1,0 +1,21 @@
+.information {
+  /* position: relative; */
+  /* display: flex; */
+  /* left: 40%; */
+  gap: 10%;
+   background-color: green;
+  height: 180px; 
+  width: 500px;
+}
+ .input{ 
+/* display: flex; */
+justify-content: space-around;
+gap: 10%;
+/* flex-direction: row; */
+}
+ .submit{ 
+  /* display: flex; */
+position: relative;
+left: 50%;
+top: 60%;
+} 
