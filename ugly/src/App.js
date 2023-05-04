@@ -1,9 +1,10 @@
 
 import React from 'react'
 import UglyThings from './Components/UglyThings'
-import UglyList from './Components/UglyList'
+// import UglyList from './Components/UglyList'
 
 import { AxiosContextProvider } from './Context/AxiosContext'
+import  Card  from './Components/Card'
 
 function App() {
   
@@ -11,7 +12,8 @@ function App() {
     return (
   <AxiosContextProvider>
   <UglyThings />
-  <UglyList />
+  {/* <UglyList /> */}
+  <Card />
   </AxiosContextProvider>
     )
 }

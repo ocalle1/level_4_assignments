@@ -16,7 +16,19 @@ function AxiosContextProvider(props) {
         description: ""
     });
 
+    const [formInputs, setFormInputs] = useState({
+        title: props.name,
+        description: ""
+    })
+
     const [arrUgly, setArrUgly] = useState([]);
+
+
+    // const editCharacter = (id) =>{
+    // console.log("editCharacter function was called")
+    // }
+
+
 
     function getUglies() {
         axios.get(`${apiURL}`)// fetch request
@@ -37,10 +49,19 @@ function AxiosContextProvider(props) {
             })
     }
 
+    function deleteUglies(id) {
+        //axios delete request
+        //concatenate id to the api url string
+        console.log(id, "delete id")
+        axios.delete("https://api.vschool.io/oscarc/thing/" + id)
+        .then(()=>getUglies())
+            //.then(res => console.log(res, "delete is working!!!"))
+        }
+    //create a put and delete API request
     return (
         <AxiosContext.Provider
             value={{
-                arrUgly, setArrUgly, ugly, setUgly, getUglies, postUglies
+                arrUgly, setArrUgly, ugly, setUgly, getUglies, postUglies, formInputs, setFormInputs, deleteUglies
             }}
         >
             {props.children}

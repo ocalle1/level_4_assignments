@@ -1,10 +1,12 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { AxiosContext } from "../Context/AxiosContext";
 import Card from "./Card";
+import axios from "axios"
 
-function UglyThings(){
+function UglyThings(props){
 
-    const { arrUgly, setArrUgly, ugly, setUgly, getUglies, postUglies} = useContext(AxiosContext);
+
+    const { arrUgly, setArrUgly, ugly, setUgly, getUglies, postUglies, formInputs} = useContext(AxiosContext);
     // console.log(arrUgly)
 
     const handleChange = (e) => { 
@@ -19,20 +21,50 @@ function UglyThings(){
 const handleSubmit = (e) => {
     e.preventDefault();
     postUglies();
+    //props.editCharacter(props.id, formInputs)
 }
+
+
+
+const editCharacter = (id, update) => {
+    //place axios put request here to update data from api
+
+    axios.put("https://api.vschool.io/oscarc/thing/" + id, update)
+    .then(res => console.log(res))
+    //.then(() => getUglies())
+    //getUglies()
+    console.log("editCharacter function was called")
+    console.log("editCharacer fuction is updating:", id, "with this update:", update)
+    setArrUgly((prevArr) => {
+return prevArr.map((arrUgly) => {
+    if(arrUgly.id === id){
+    return {
+        ...arrUgly,
+        name:update.title
+    }
+}
+    else 
+    return arrUgly
+})
+     })
+   
+}
+    
 
 useEffect(() =>{
     getUglies()
 
 }, []);
 
+//maps over title,description, imgUrl and displays to browser
 let mappedList = arrUgly.map((info)=>{
-      return(
-          <ul key={info._id}>
+    return(
+        <ul key={info._id}>
               <Card {...info}
-              id={info.id}
+              id={info._id}
               data={arrUgly}
               imgUrl={info.imgUrl}
+            editCharacter={editCharacter}
               />
           </ul>
       )
@@ -63,6 +95,7 @@ onChange={handleChange}
 <button>Submit</button>
         </form> 
        <div>
+        {/* displays to browser mappedList */}
          {mappedList}
        </div>
        
@@ -70,114 +103,3 @@ onChange={handleChange}
     )
 }
 export default UglyThings;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ****************The data of ugly things should be managed by React Context, Only the array of ugly things, and functions for manipulating it, needs to be managed in context***************
-// import React, { useEffect, useState } from "react";
-// import axios from 'axios'
-
-
-
-// const UglyContext = React.createContext();//lets Componenets receive info from disant parnet without passing it as props
-
-// function UglyThingsProvider(props) {
-//     // Updates the 3 properties
-//     const [ugly, setUgly] = useState({
-//         title: "",
-//         imgUrl: "",
-//         description: ""
-//     })
-
-//     // Empty Array where new info will display
-//     const [uglyList, setUglyList] = useState([])
-   
-//     // For Asyncronysation using axios; will post to API and then we will have to GET from API to display
-//     const createNewThing = async () => {
-//         const apiUrl = "https://api.vschool.io/oscarc/thing"
-//         const data = {
-//             title: "My New Thing",
-//             imgUrl: "https://example.com/my-image.jpg",
-//             description: "New Thing Created With API"
-//         };
-//         try {
-//             const response = await axios.post(apiUrl, data);//await/axios used to make code readable and to handle errors
-//             console.log(response.data);
-//         } catch (error) {
-//             console.error(error);
-//         }
-//     }
-
-//     useEffect(() => {
-//         createNewThing();
-//     })
-
-//     const fetchThings = async () => {
-//         const apiUrl = "https://api.vschool.io/oscarc/thing";
-//         try {
-//             const response = await axios.get(apiUrl);
-//             const things = response.data;
-//             const titles = things.map(thing => thing.title);
-//             const imgUrls = things.map(thing => thing.imgUrl);
-//             const descriptions = things.map(thing => thing.description);
-//             console.log(titles, imgUrls, descriptions);
-//         } catch (error) {
-//             console.log(error)
-//         }
-//     }
-
-//     useEffect(() => {
-//         fetchThings();
-//     })
-
-//     //when user input changes the value this targets and creates the change.
-//     function handleChange(event) {
-//         const { name, value } = event.target;
-//         setUgly(prevState => ({
-//             ...prevState,
-//             [name]: value
-//         }))
-//     }
-
-//     function handlSubmit(event) {
-//         event.default();
-//         setUglyList(...prevState => [...prevState, ugly]);// adds current ugly object to the list of uglies
-//         //resets form inputs
-//         setUgly({
-//             title: "",
-//             imgUrl: "",
-//             description: ""
-//         })
-//     }
-
-//     return (//Where the values are accessable to any Components
-//         <UglyContext.Provider value={{
-//             ugly: ugly,
-//             uglyList: uglyList,
-//             handleChange: handleChange,
-//             handlSubmit: handlSubmit
-//         }}>
-//             {props.children}
-//         </UglyContext.Provider>
-//     )
-// }
-
-
-
-// export { UglyContext, UglyThingsProvider };
