@@ -1,0 +1,9 @@
+.footer{
+    font-size: 10px;
+    position: absolute;
+    /* display: flex; */
+    /* flex-direction: row-reverse; */
+    bottom: 0;
+    left: 43%;
+    background-color: aqua;
+}
