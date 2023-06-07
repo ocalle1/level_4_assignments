@@ -20,7 +20,6 @@ function AxiosContextProvider(props) {
         title: props.name,
         description: ""
     })
-
     const [arrUgly, setArrUgly] = useState([]);
 
 
@@ -29,11 +28,10 @@ function AxiosContextProvider(props) {
     // }
 
 
-
     function getUglies() {
         axios.get(`${apiURL}`)// fetch request
             .then(res => {
-                // console.log(res.data, "getting data")
+                console.log(res.data, "getting data")
                 setArrUgly(res.data)
             })
     }
@@ -61,6 +59,7 @@ function AxiosContextProvider(props) {
     return (
         <AxiosContext.Provider
             value={{
+                // the createContext uses this on other pagers
                 arrUgly, setArrUgly, ugly, setUgly, getUglies, postUglies, formInputs, setFormInputs, deleteUglies
             }}
         >

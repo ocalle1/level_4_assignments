@@ -9,10 +9,10 @@ function Header(){
             <h1 className="header">Plumbing Services</h1>
 <div className="nav">
       <nav style={{ margin: 10 }}>
-        <Link to="/" style={{ padding: 5 }}>
+        <Link to="/" style={{ padding: 5 }}> {/* step 12 */}
           Home
         </Link>
-        <Link to="/about" style={{ padding: 5 }}>
+        <Link to="/about" style={{ padding: 5 }}>{/* step 13 */}
           About
         </Link>
         <Link to="/services" style={{ padding: 5 }}>

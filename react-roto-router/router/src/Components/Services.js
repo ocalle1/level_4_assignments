@@ -1,20 +1,18 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import data from "../Data";
+import data from "../Data";//params 1
 
 
 
 function Services(){
-
+// useNavigate is to navigate through the pages with the button created below
 const navigate = useNavigate();
 
-const service = data.map( services =>(
-    <Link key={services._id} to={`/services/${services._id}`}>{services.name}</Link> 
-
-
-    // <div key={services._id}>
-    // </div>
-    
+const service = data.map(services =>( //params 2
+     <h2 key={services._id}> {/* params 3 */}
+        {/* For each _id it creates a link for each product */}
+    <Link  to={`/services/${services._id}`}>{services.name}</Link> 
+</h2> 
 ))
 
     return(
@@ -25,6 +23,7 @@ const service = data.map( services =>(
         <button onClick={() => navigate(1)}>Go forward 1</button>
 
         <div>
+            {/* Links are displayed */}
             {service}
         </div>
         </>
